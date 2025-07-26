@@ -135,31 +135,241 @@
             width: 100%;
         }
 
-        /* Glassmorphism Header */
-        .main-header {
-            padding: var(--space-md) 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+        /* ===== Unified Header Styles ===== */
+        .unified-header {
+          background-color: #ffffff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          width: 100%;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
         
-        .header-content {
-             max-width: var(--container-max);
-             margin: 0 auto;
-             padding: 0 var(--content-padding);
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
+        .header-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 70px;
         }
         
-        .logo {
-            font-weight: 700;
-            font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem);
-            color: var(--secondary-color);
+        /* Logo Styles */
+        .header-logo {
+          flex-shrink: 0;
+        }
+        
+        .logo-link {
+          font-size: 24px;
+          font-weight: 600;
+          color: #0066ff;
+          text-decoration: none;
+          transition: opacity 0.3s ease;
+        }
+        
+        .logo-link:hover {
+          opacity: 0.8;
+        }
+        
+        /* Navigation Styles */
+        .header-nav {
+          display: flex;
+          align-items: center;
+          flex-grow: 1;
+          justify-content: center;
+          margin: 0 40px;
+        }
+        
+        .header-nav .nav-menu {
+          display: flex;
+          list-style: none;
+          gap: 35px;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+        }
+        
+        .header-nav .nav-link {
+          color: #333333;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 400;
+          padding: 5px 0;
+          position: relative;
+          transition: color 0.3s ease;
+          white-space: nowrap;
+        }
+        
+        .header-nav .nav-link:hover {
+          color: #0066ff;
+        }
+        
+        .header-nav .nav-link.active {
+          color: #0066ff;
+          font-weight: 500;
+        }
+        
+        .header-nav .nav-link.active::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: #0066ff;
+        }
+        
+        /* Phone Button Styles */
+        .header-cta {
+          flex-shrink: 0;
+        }
+        
+        .phone-button {
+          background-color: #0066ff;
+          color: white;
+          padding: 10px 24px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+        }
+        
+        .phone-button:hover {
+          background-color: #0052cc;
+          transform: translateY(-1px);
+        }
+        
+        .phone-icon {
+          font-size: 18px;
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 5px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1001;
+        }
+        
+        .mobile-menu-toggle span {
+          display: block;
+          width: 25px;
+          height: 3px;
+          background-color: #333333;
+          margin: 3px 0;
+          transition: 0.3s;
+          border-radius: 2px;
+          pointer-events: none;
+        }
+        
+        /* Mobile Menu Styles */
+        @media (max-width: 900px) {
+          .header-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-top: 0.5rem;
+            z-index: 1000;
+          }
+          
+          .header-nav.active {
+            display: block;
+          }
+          
+          .header-nav .nav-menu {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+            width: 100%;
+          }
+          
+          .header-nav .nav-menu li {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #f0f0f0;
+          }
+          
+          .header-nav .nav-link {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+          }
+          
+          .header-nav .nav-link:hover {
+            background-color: #f5f5f5;
+            color: #0066ff;
+          }
+          
+          .header-nav .nav-link.active {
+            background-color: #e6f2ff;
+            color: #0066ff;
+            font-weight: 600;
+            border-left: 4px solid #0066ff;
+          }
+          
+          .mobile-menu-toggle {
+            display: flex;
+          }
+          
+          .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+            background-color: #0066ff;
+          }
+          
+          .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+          }
+          
+          .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+            background-color: #0066ff;
+          }
+        }
+        
+        /* Smaller mobile devices */
+        @media (max-width: 480px) {
+          .header-container {
+            height: 60px;
+            padding: 0 15px;
+          }
+          
+          .header-nav .nav-link {
+            padding: 15px 20px;
+            font-size: 15px;
+          }
+          
+          .phone-button {
+            padding: 8px 16px;
+            font-size: 14px;
+          }
+          
+          .phone-icon {
+            font-size: 14px;
+          }
         }
 
         /* Hero Section */
@@ -670,11 +880,39 @@
     
     <div id="progress-bar"></div>
 
-    <header class="main-header">
-        <div class="header-content">
-            <a href="https://www.billlayneinsurance.com" class="logo">Bill Layne Insurance</a>
-            <a href="tel:336-835-1993" class="touch-button">Call for a Quote</a>
+    <!-- Unified Header -->
+    <header class="unified-header">
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="https://billlayneinsurance.com/" class="logo-link">
+            Bill Layne Insurance
+          </a>
         </div>
+        
+        <nav class="header-nav">
+          <ul class="nav-menu">
+            <li><a href="https://billlayne.github.io/Auto-Insurance-Center/" class="nav-link">Auto</a></li>
+            <li><a href="https://billlayne.github.io/NC-Home-Insurance.github.io/" class="nav-link">Home</a></li>
+            <li><a href="https://billlayneinsurance.com/areas-we-serve.html" class="nav-link">Services</a></li>
+            <li><a href="https://billlayne.github.io/NC-Insurance-Claims-Center.github.io/" class="nav-link">Claims</a></li>
+            <li><a href="https://billlayne.github.io/Resources/" class="nav-link">Resources</a></li>
+            <li><a href="https://billlayneinsurance.com/blog" class="nav-link">Blog</a></li>
+            <li><a href="https://billlayneinsurance.com/contact-us.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="header-cta">
+          <a href="tel:3368351993" class="phone-button">
+            <span class="phone-icon">📞</span> (336) 835-1993
+          </a>
+        </div>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </header>
 
     <div class="hero">
@@ -890,6 +1128,39 @@
     </div>
 
     <script>
+        // Mobile Menu JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const headerNav = document.querySelector('.header-nav');
+
+            if (mobileMenuToggle && headerNav) {
+                // Simple toggle functionality
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    headerNav.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.header-container')) {
+                        headerNav.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking on a nav link
+                const menuLinks = document.querySelectorAll('.header-nav .nav-link');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        headerNav.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+            }
+        });
+
         // Reading Progress Bar
         window.addEventListener('scroll', () => {
             const progressBar = document.getElementById('progress-bar');
